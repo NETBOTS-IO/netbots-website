@@ -1,0 +1,86 @@
+:root {
+  /* Color System */
+  --space-black: #05060A;
+  --graphite: #0D0F14;
+  --text-primary: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.65);
+  
+  /* Gradients */
+  --signal-gradient: linear-gradient(135deg, #00F2FE 0%, #4FACFE 50%, #A18CD1 100%);
+  --energy-gradient: linear-gradient(135deg, #F6D365 0%, #FDA085 50%, #FF0844 100%);
+  
+  /* Glassmorphism Materials */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-glow: rgba(0, 242, 254, 0.15); /* Subtle cyan glow */
+  
+  /* Typography */
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  
+  /* Layout */
+  --circuit-width: 2px;
+}
+
+html, body {
+  height: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: var(--space-black);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Base resets */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Glass panel utility */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* Gradient text utility */
+.text-gradient-signal {
+  background: var(--signal-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-energy {
+  background: var(--energy-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Hide scrollbar for clean aesthetic */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--space-black);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--graphite);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--glass-border);
+}
