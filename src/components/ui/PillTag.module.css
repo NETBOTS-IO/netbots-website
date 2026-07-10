@@ -1,0 +1,20 @@
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--light-blue);
+  border: 1px solid rgba(0, 68, 255, 0.1);
+  color: var(--primary-blue);
+  transition: all 0.3s ease;
+}
+
+.pill:hover {
+  background: var(--primary-blue);
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 68, 255, 0.2);
+}

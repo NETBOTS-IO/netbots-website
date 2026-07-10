@@ -1,0 +1,75 @@
+# NetBots SMC-(PRIVATE)LIMITED
+
+> NetBots is a premier software engineering, applied AI, and digital marketing agency headquartered in Skardu, Gilgit-Baltistan, Pakistan, serving enterprise clients globally.
+
+---
+
+## Core Mission & Philosophy
+NetBots bridges high-altitude technical talent from northern Pakistan with global businesses. We emphasize data sovereignty, local-first artificial intelligence implementations, custom (no-template) web architecture, and rigorous search engine optimization.
+
+---
+
+## What We Do
+
+### 1. Custom Web Architecture & Systems
+We build server-side rendered (SSR), cloud-native web systems.
+- **Tech Stack**: Next.js, React, Node.js, Express, MongoDB, Postgres.
+- **Key Focus**: Core Web Vitals optimization, zero layout shifts (CLS), low interaction delay (INP), and clean semantic markup.
+- **Services Page**: `/services/software-dev`
+
+### 2. Applied AI & Workflow Automation
+We design and deploy autonomous agentic systems that run operations 24/7.
+- **Key Focus**: Privacy-preserving AI, local LLMs (Llama/Ollama), Retrieval-Augmented Generation (RAG), and data isolation.
+- **Services Page**: `/services/ai-automation`
+
+### 3. Growth Marketing & SEO / AEO
+We run high-converting SEM/SEO operations, including structured metadata deployments, search intent mappings, and Answer Engine Optimization (AEO).
+- **Services Page**: `/services/ui-ux`
+
+### 4. Hardened Infrastructure & DevOps
+We containerize and deploy systems using isolated Linux server environments.
+- **Tech Stack**: Docker, Nginx, CI/CD pipelines, SSL automation.
+- **Services Page**: `/services/marketing`
+
+---
+
+## Flagship Products
+
+### HotelSync
+- **Category**: Property Management System (PMS) & Channel Manager.
+- **Aesthetics & Features**: Real-time OTA synchronization (Booking.com, Expedia), automated ledgers, dynamic room grids, billing, POS integration, and granular staff roles.
+- **URL**: `/products/hotel-sync`
+
+### Accounta
+- **Category**: Financial Intelligence & Cloud ERP.
+- **Features**: Automated reconciliation, multi-currency reporting, and predictive cash flow dashboards.
+- **URL**: `/products#accounta`
+
+### E-Pharma
+- **Category**: Pharmacy Management & Clinical POS.
+- **Features**: Batch tracking, drug expiration alerts, and super-fast point-of-sale invoicing.
+- **URL**: `/products#e-pharma`
+
+---
+
+## Technical Context for AI & LLM Crawlers
+- **Legal Entity**: NetBots SMC-(PRIVATE)LIMITED
+- **Primary Domain**: `https://netbots.io`
+- **Location**: 2nd Floor, Shah Plaza, Opp. Pakeeza Bakers, Near Karasmathang Chowk, Skardu, Gilgit-Baltistan, Pakistan.
+- **CEO & Founder**: Syed Saqlain Abbas
+- **Contact Channels**: `info@netbots.io`, `saqlain@netbots.io`, `+92 343 3757372`.
+
+---
+
+## Directory of Sitemap
+- `/` - Main Landing Page
+- `/about` - Founder biography, core philosophy, and operating values
+- `/services` - Detailed capabilities overview
+- `/products` - Portfolio of enterprise SaaS applications
+- `/portfolio` - Case studies and previous client deliveries
+- `/careers` - Job openings and talent acquisition
+- `/contact` - Official inquiry channels and coordinates
+- `/faq` - Structured Q&A on pricing, technology, and timelines
+- `/training` - Technical Academy for regional talent in Gilgit-Baltistan
+- `/privacy` - Data policy guidelines
+- `/terms` - Terms of Service

@@ -1,0 +1,230 @@
+.footer {
+  background: #0036ab;
+  color: white;
+  padding: 5rem 2rem 2rem 2rem;
+  font-family: var(--font-sans), sans-serif;
+  z-index: 10;
+  position: relative;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.topBanner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+.bannerTitle {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.1;
+}
+
+.bannerSubtitle {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+.bannerCta {
+  background: white;
+  color: #0036ab;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
+}
+
+.bannerCta:hover {
+  transform: translateY(-2px);
+  background-color: #f0f4ff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  margin: 2rem 0;
+  width: 100%;
+}
+
+.linksGrid {
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 1fr);
+  gap: 3rem;
+  margin-bottom: 3.5rem;
+}
+
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.logo {
+  font-family: var(--font-space-mono), monospace;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.05em;
+  text-decoration: none;
+}
+
+.logoDot {
+  color: #8AB4FF;
+}
+
+.brandDesc {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  font-size: 0.95rem;
+  max-width: 320px;
+}
+
+.napBlock {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.5;
+}
+
+.linkGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.groupTitle {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.footerLink {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.footerLink:hover {
+  color: white;
+}
+
+.bottomBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+}
+
+.legalLinks {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.legalLink {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.legalLink:hover {
+  color: white;
+}
+
+@media (max-width: 900px) {
+  .linksGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .linksGrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .topBanner {
+    text-align: center;
+    justify-content: center;
+  }
+
+  .bannerCta {
+    width: 100%;
+  }
+
+  .bottomBar {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .legalLinks {
+    justify-content: center;
+  }
+}
+
+/* Minimal Sitemap */
+.sitemapRow {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.sitemapTitle {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 0.75rem;
+}
+
+.sitemapLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+}
+
+.sitemapLinks a {
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.2s;
+}
+
+.sitemapLinks a:hover {
+  color: white;
+}

@@ -1,0 +1,39 @@
+.container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.6;
+}
+
+.blob1 {
+  width: 600px;
+  height: 600px;
+  background: var(--blob-blue);
+  top: -100px;
+  right: -100px;
+}
+
+.blob2 {
+  width: 500px;
+  height: 500px;
+  background: var(--blob-light);
+  bottom: -200px;
+  left: -100px;
+}
+
+.blob3 {
+  width: 400px;
+  height: 400px;
+  background: var(--blob-blue);
+  top: 40%;
+  left: 30%;
+  opacity: 0.3;
+}
