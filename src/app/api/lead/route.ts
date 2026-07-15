@@ -366,6 +366,33 @@ export async function POST(req: Request) {
       html: emailHtml,
     });
 
+    // Push copy of lead directly to CRM
+    try {
+      const crmApiUrl = process.env.CRM_API_URL || 'http://localhost:5000/api';
+      const crmPayload = {
+        companyName: body.company || name,
+        contactName: name,
+        email: email,
+        phone: body.phone || '',
+        notes: `Website form: ${type.toUpperCase()}.\nObjective: ${body.objective || ''}\nChallenge: ${body.challenge || ''}\nProduct: ${body.product || ''}\nRequirements: ${body.requirements || ''}\nCover Letter: ${body.coverLetter || ''}`,
+        priority: 'high',
+        channel: 'Website',
+        website: body.website || '',
+        targetService: type === 'audit' ? ['website_seo'] : [],
+      };
+      
+      await fetch(`${crmApiUrl}/leads/public-webhook`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-KEY': 'netbots_website_webhook_secret_key_2026'
+        },
+        body: JSON.stringify(crmPayload)
+      });
+    } catch (crmErr) {
+      console.error('[CRM Lead push failed]', crmErr);
+    }
+
     return NextResponse.json({ success: true, message: 'Message sent successfully.' }, { status: 200 });
   } catch (error) {
     console.error('[Nodemailer API] Error details:', error);
