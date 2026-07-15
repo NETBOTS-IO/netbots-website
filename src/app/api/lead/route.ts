@@ -358,27 +358,42 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Unsupported type' }, { status: 400 });
     }
 
-    // Deliver email to both recipient addresses
-    await transporter.sendMail({
-      from: process.env.EMAIL_FROM || '"NetBots Leads Core" <leads@netbots.io>',
-      to: process.env.EMAIL_TO || 'leads@netbots.io, saqlainshahbaltee@gmail.com',
-      subject: emailSubject,
-      html: emailHtml,
-    });
-
-    // Push copy of lead directly to CRM
+    // 1. Push copy of lead directly to CRM
     try {
       const crmApiUrl = process.env.CRM_API_URL || 'http://localhost:5000/api';
+      
+      // Map notes based on form type for maximum CRM detail richness
+      let notes = `Website Form: ${type.toUpperCase()}\n`;
+      if (type === 'contact') {
+        notes += `Objective: ${body.objective || 'Not Specified'}\nChallenge Context: ${body.challenge || 'Not Specified'}`;
+      } else if (type === 'training') {
+        notes += `Selected Program: ${body.program || 'Not Specified'}\nBackground & Learning Goals: ${body.background || 'Not Specified'}`;
+      } else if (type === 'demo') {
+        notes += `Requested SaaS: ${body.product || 'Not Specified'}\nDeployment Scale: ${body.usersCount || 'Not Specified'}\nCustom Requirements: ${body.requirements || 'Not Specified'}`;
+      } else if (type === 'hotelsync') {
+        notes += `Hotel Name: ${body.hotelName || 'Not Specified'}\nProperty Size: ${body.propertySize || 'Not Specified'}\nMessage: ${body.message || 'None'}`;
+      } else if (type === 'audit') {
+        notes += `Project Focus: ${body.projectFocus || 'Not Specified'}\nBudget Range: ${body.budget || 'Not Specified'}\nTimeline: ${body.timeline || 'Not Specified'}\nContext/Challenges: ${body.context || 'Not Specified'}`;
+      } else if (type === 'career') {
+        notes += `Position Applied: ${body.roleTitle || 'Not Specified'}\nExperience: ${body.experience || 'Not Specified'}\nPortfolio: ${body.portfolio || 'None'}\nResume Link: ${body.resumeLink || 'None'}\nCover Letter/Notes: ${body.coverLetter || 'None'}`;
+      }
+
+      // Map target service arrays
+      let targetService: string[] = [];
+      if (type === 'audit') targetService = ['website_seo'];
+      if (type === 'hotelsync') targetService = ['saas_product'];
+      if (type === 'demo' && body.product?.toLowerCase().includes('sync')) targetService = ['saas_product'];
+
       const crmPayload = {
-        companyName: body.company || name,
+        companyName: body.hotelName || body.company || name,
         contactName: name,
         email: email,
         phone: body.phone || '',
-        notes: `Website form: ${type.toUpperCase()}.\nObjective: ${body.objective || ''}\nChallenge: ${body.challenge || ''}\nProduct: ${body.product || ''}\nRequirements: ${body.requirements || ''}\nCover Letter: ${body.coverLetter || ''}`,
+        notes: notes,
         priority: 'high',
         channel: 'Website',
         website: body.website || '',
-        targetService: type === 'audit' ? ['website_seo'] : [],
+        targetService: targetService,
       };
       
       await fetch(`${crmApiUrl}/leads/public-webhook`, {
@@ -393,9 +408,22 @@ export async function POST(req: Request) {
       console.error('[CRM Lead push failed]', crmErr);
     }
 
+    // 2. Deliver email to both recipient addresses
+    try {
+      await transporter.sendMail({
+        from: process.env.EMAIL_FROM || '"NetBots Leads Core" <leads@netbots.io>',
+        to: process.env.EMAIL_TO || 'leads@netbots.io, saqlainshahbaltee@gmail.com',
+        subject: emailSubject,
+        html: emailHtml,
+      });
+    } catch (mailErr) {
+      console.error('[Nodemailer API] Email delivery failed:', mailErr);
+      // Still return success since the CRM copy was stored successfully
+    }
+
     return NextResponse.json({ success: true, message: 'Message sent successfully.' }, { status: 200 });
   } catch (error) {
-    console.error('[Nodemailer API] Error details:', error);
+    console.error('[General API] Error details:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
