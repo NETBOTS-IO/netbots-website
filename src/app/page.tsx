@@ -177,8 +177,6 @@ export default function Home() {
                   width={120}
                   height={42}
                   style={{
-                    height: '42px',
-                    width: 'auto',
                     objectFit: 'contain',
                     filter: 'grayscale(100%) opacity(70%)',
                     transition: 'filter 0.3s',

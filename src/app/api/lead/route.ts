@@ -1,14 +1,14 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
-// Configure SMTP transport using Hostinger credentials
+// Configure SMTP transport using environment variables
 const transporter = nodemailer.createTransport({
-  host: 'smtp.hostinger.com',
-  port: 465,
-  secure: true,
+  host: process.env.SMTP_HOST || 'smtp.hostinger.com',
+  port: parseInt(process.env.SMTP_PORT || '465'),
+  secure: process.env.SMTP_SECURE === 'true' || true,
   auth: {
-    user: 'leads@netbots.io',
-    pass: 'Leads@110',
+    user: process.env.SMTP_USER || 'leads@netbots.io',
+    pass: process.env.SMTP_PASS || 'Leads@110',
   },
 });
 
@@ -360,8 +360,8 @@ export async function POST(req: Request) {
 
     // Deliver email to both recipient addresses
     await transporter.sendMail({
-      from: '"NetBots Leads Core" <leads@netbots.io>',
-      to: 'leads@netbots.io, saqlainshahbaltee@gmail.com',
+      from: process.env.EMAIL_FROM || '"NetBots Leads Core" <leads@netbots.io>',
+      to: process.env.EMAIL_TO || 'leads@netbots.io, saqlainshahbaltee@gmail.com',
       subject: emailSubject,
       html: emailHtml,
     });

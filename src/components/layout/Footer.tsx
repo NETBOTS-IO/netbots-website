@@ -40,7 +40,7 @@ export function Footer() {
           <div className={styles.linksGrid}>
             <div className={styles.brandCol}>
               <Link href="/" className={styles.logo} style={{ display: 'flex', alignItems: 'center' }}>
-                <Image src="/images/netbots_logo_white.avif" alt="NetBots" width={120} height={36} style={{ height: '36px', width: 'auto', objectFit: 'contain' }} />
+                <Image src="/images/netbots_logo_white.avif" alt="NetBots" width={120} height={36} style={{ objectFit: 'contain' }} />
               </Link>
               <p className={styles.brandDesc}>
                 Custom software, AI automation, and growth marketing, engineered

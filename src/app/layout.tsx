@@ -365,7 +365,7 @@ export default async function RootLayout({
   const nonce = (await headers()).get('x-nonce') || '';
 
   return (
-    <html lang="en" className={`${inter.variable} ${spaceMono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${spaceMono.variable}`} suppressHydrationWarning data-scroll-behavior="smooth">
       <head>
         <link rel="preconnect" href="https://scripts.clarity.ms" />
       </head>

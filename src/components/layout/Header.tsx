@@ -16,7 +16,7 @@ export function Header() {
       <header className={styles.header}>
         <div className={styles.navContainer}>
           <Link href="/" className={styles.logo} style={{ display: 'flex', alignItems: 'center' }}>
-            <Image src="/images/netbots-logo-original.avif" alt="NetBots" width={120} height={36} style={{ height: '36px', width: 'auto', objectFit: 'contain' }} priority />
+            <Image src="/images/netbots-logo-original.avif" alt="NetBots" width={120} height={36} style={{ objectFit: 'contain' }} priority />
           </Link>
 
           <nav className={`${styles.nav} ${mobileMenuOpen ? styles.navActive : ''}`}>
