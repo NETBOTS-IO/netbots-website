@@ -241,7 +241,7 @@ export const products: Product[] = [
       'Unifies front desk, housekeeping, and global booking engines into one responsive dashboard.',
     target: 'Hotels, resorts, regional tourism boards.',
     cta: 'Explore Platform',
-    href: '/products/hotel-sync',
+    href: 'http://hotelsync.netbots.io/',
   },
   {
     id: 'accounta',
@@ -254,14 +254,14 @@ export const products: Product[] = [
     href: '/contact',
   },
   {
-    id: 'e-pharma',
-    name: 'E-Pharma',
-    tagline: 'Secure Clinical POS & Inventory',
+    id: 'synapse-os',
+    name: 'Synapse OS',
+    tagline: 'The Operating System for Your HealthCare Business',
     description:
-      'Batch- and expiry-level inventory tracking, automated supplier reordering, secure patient prescription records.',
-    target: 'Clinics, pharmacies, healthcare providers.',
-    cta: 'Request a Demo',
-    href: '/contact',
+      'Automated workflows, secure data management, and intelligent insights to streamline your clinic and hospital and pharmacy operations and boost productivity.',
+    target: 'Hospitals,Clinics, pharmacies, healthcare providers.',
+    cta: 'Explore Synapse',
+    href: 'https://synapseos.netbots.io/',
   },
   {
     id: 'gmap-scraper',
@@ -273,16 +273,7 @@ export const products: Product[] = [
     cta: 'Request a Demo',
     href: '/contact',
   },
-  {
-    id: 'clinical-system',
-    name: 'CMS Care',
-    tagline: 'Patient Care & Electronic Records',
-    description:
-      'Streamlines patient scheduling, encrypted health histories, diagnostics logging, and billing in one secure dashboard.',
-    target: 'Hospitals, clinics, private practitioners.',
-    cta: 'Request a Demo',
-    href: '/contact',
-  },
+
 ];
 
 export const faqItems: FAQItem[] = [

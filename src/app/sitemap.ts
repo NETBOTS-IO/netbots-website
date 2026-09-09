@@ -21,16 +21,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/contact',
     '/faq',
     '/training',
+    '/register/the-founder-lab-masterclass',
     '/privacy',
     '/terms',
     '/refund',
     '/cookies',
   ];
 
-  return routes.map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date().toISOString().split('T')[0],
-    changeFrequency: 'weekly',
-    priority: route === '' ? 1.0 : route.startsWith('/products/') || route.startsWith('/services/') ? 0.8 : 0.6,
-  }));
+  return routes.map((route) => {
+    const isFounderLab = route === '/register/the-founder-lab-masterclass';
+    const isHome = route === '';
+    const isProductOrService = route.startsWith('/products/') || route.startsWith('/services/');
+
+    return {
+      url: `${baseUrl}${route}`,
+      lastModified: new Date().toISOString().split('T')[0],
+      changeFrequency: isHome || isFounderLab ? 'daily' : 'weekly',
+      priority: isHome ? 1.0 : isFounderLab ? 0.9 : isProductOrService ? 0.8 : 0.6,
+    };
+  });
 }

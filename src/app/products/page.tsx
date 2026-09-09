@@ -81,7 +81,7 @@ export default function ProductsPage() {
                 <p className={styles.productTarget}>
                   <strong>Target:</strong> {product.target}
                 </p>
-                {product.id === 'hotel-sync' ? (
+                {product.id === 'hotel-sync' || product.id === 'synapse-os' ? (
                   <Link
                     href={product.href}
                     className={styles.productCta}
