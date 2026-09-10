@@ -28,11 +28,86 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.youtube.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.ytimg.com',
+      },
+    ],
+  },
+
+  async redirects() {
+    return [
+      // ── Legacy / broken URLs from GSC ──────────────────────────────────────
+      {
+        source: '/pk',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/apply-training',
+        destination: '/training',
+        permanent: true,
+      },
+      {
+        source: '/privacy-policy',
+        destination: '/privacy',
+        permanent: true,
+      },
+      // ── Canonical host enforcement (www → non-www) ─────────────────────────
+      // These fire if your hosting/CDN does NOT already handle www→non-www.
+      // If Vercel/Cloudflare handles it, these are harmless no-ops in practice.
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.netbots.io' }],
+        destination: 'https://netbots.io/:path*',
+        permanent: true,
+      },
+      // ── Permanent route renames ─────────────────────────────────────────────
+      // NOTE: The page file at src/app/case-studies/page.tsx used next/navigation
+      // redirect() which issues a 307 (temp). This 301 here takes precedence and
+      // preserves link equity from any backlinks to /case-studies.
+      {
+        source: '/case-studies',
+        destination: '/portfolio',
+        permanent: true,
+      },
+    ];
+  },
+
+
   async headers() {
     return [
       {
-        source: '/(.*)',
+        // Apply strict security headers to all routes EXCEPT /studio
+        source: '/((?!studio).*)',
         headers: securityHeaders,
+      },
+      {
+        // Studio needs relaxed headers for Sanity auth (OAuth popups + cross-origin API)
+        source: '/studio/:path*',
+        headers: [
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          // Allow OAuth popup to communicate back to Studio window
+          { key: 'Cross-Origin-Opener-Policy', value: 'same-origin-allow-popups' },
+          // SAMEORIGIN (not DENY) so Sanity auth popups are not blocked
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+        ],
       },
     ];
   },

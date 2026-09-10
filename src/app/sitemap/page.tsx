@@ -3,10 +3,15 @@ import Link from 'next/link';
 import styles from './page.module.css';
 import { ArrowRight } from 'lucide-react';
 
-export const metadata = {
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
   title: 'Sitemap | NetBots',
-  description: 'Complete directory of all pages on the NetBots website.',
+  description: 'Complete directory of all pages on the NetBots website — services, products, blog, training, and legal pages.',
+  alternates: { canonical: 'https://netbots.io/sitemap' },
+  robots: { index: true, follow: true },
 };
+
 
 export default function SitemapPage() {
   const sitemapSections = [

@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: 'Contact Net Bots | AI & Web Development Skardu',
   description: 'Get in touch with Net Bots in Skardu for custom software development, SEO, and AI solutions.',
   keywords: ['contact Net Bots', 'web development Gilgit-Baltistan', 'SEO and digital marketing services'],
+  alternates: { canonical: 'https://netbots.io/contact' },
 };
 
 export default function ContactLayout({

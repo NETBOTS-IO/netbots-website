@@ -1,19 +1,25 @@
-'use client';
+// Server Component — no 'use client' here.
+// Content is SSR'd and visible to crawlers on first HTML pass.
+// Only the CTA button/modal (ServiceCTA) is a client leaf.
 
-import React, { useState } from 'react';
+import React from 'react';
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { ProfessionalServiceSchema } from '@/components/structured-data/ProfessionalServiceSchema';
 import { BreadcrumbListSchema } from '@/components/structured-data/BreadcrumbListSchema';
-import { motion } from 'framer-motion';
-import styles from './page.module.css';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
-import { LeadCaptureModal } from '@/components/lead-capture/LeadCaptureModal';
-import { useParams } from 'next/navigation';
+import { ServiceCTA } from './ServiceCTA';
+import styles from './page.module.css';
 
+// ── Service data ─────────────────────────────────────────────────────────────
+// Keys must match the slug values used in the URL and sitemap.
 const serviceData: Record<
   string,
   {
     title: string;
+    metaTitle: string;
+    metaDescription: string;
     desc: string;
     stack: string[];
     approach: string;
@@ -22,6 +28,8 @@ const serviceData: Record<
 > = {
   'software-dev': {
     title: 'Custom Web & System Architecture',
+    metaTitle: 'Custom Web Development & System Architecture Services | NetBots Pakistan',
+    metaDescription: 'NetBots engineers scalable MERN-stack web platforms, PWAs, and enterprise portals with SSR for near-instant load times. Based in Skardu, Gilgit-Baltistan — serving clients globally. Book a free audit.',
     desc: 'Progressive Web Apps (PWAs) and enterprise portals with Server-Side Rendering (SSR) for near-instant load times.',
     stack: ['React', 'Next.js', 'Node.js', 'Express', 'MongoDB'],
     approach:
@@ -31,6 +39,8 @@ const serviceData: Record<
   },
   'ai-automation': {
     title: 'AI Integration & Autonomous Workflows',
+    metaTitle: 'AI Automation & Agentic Workflow Services | NetBots Pakistan',
+    metaDescription: 'Bespoke AI agents, LLM integrations, and local-first models built for your business. NetBots deploys intelligent automation that runs 24/7 without manual bottlenecks. Book a free AI audit.',
     desc: 'Bespoke AI agents built around your specific business context, from intelligent customer service to automated data pipelines.',
     stack: ['LLM APIs', 'Agentic Workflows', 'Local-First Models', 'RAG'],
     approach:
@@ -40,15 +50,19 @@ const serviceData: Record<
   },
   'ui-ux': {
     title: 'Data-Driven Digital Marketing',
+    metaTitle: 'Data-Driven Digital Marketing & CRO Services | NetBots Pakistan',
+    metaDescription: 'SEO, precision PPC, and conversion rate optimization that maps full customer psychology from first click to final sale. NetBots builds dominant digital footprints in Gilgit-Baltistan and beyond.',
     desc: 'SEO, precision PPC, and conversion rate optimization (CRO), mapping full customer psychology from first click to final sale.',
     stack: ['SEO', 'PPC', 'CRO', 'Analytics'],
     approach:
-      'We don\'t guess; we map. Every campaign is built on customer psychology data, search intent analysis, and conversion funnel architecture that turns clicks into revenue.',
+      "We don't guess; we map. Every campaign is built on customer psychology data, search intent analysis, and conversion funnel architecture that turns clicks into revenue.",
     impact:
       'A predictable, scalable pipeline of qualified leads and a dominant digital footprint in your target market.',
   },
   marketing: {
     title: 'Secure Infrastructure & DevOps',
+    metaTitle: 'Secure Web Infrastructure & DevOps Services | NetBots Pakistan',
+    metaDescription: 'Docker containers, Nginx deployments, Linux security hardening, and CI/CD pipelines for maximum uptime. NetBots builds infrastructure that scales and survives anything.',
     desc: 'Seamless SSL deployment, isolated container environments, robust database management for maximum uptime.',
     stack: ['Docker', 'Nginx', 'Linux Security', 'CI/CD'],
     approach:
@@ -58,16 +72,67 @@ const serviceData: Record<
   },
 };
 
-export default function ServicePage() {
-  const params = useParams();
-  const slug = params.slug as string;
-  const data = serviceData[slug] || serviceData['software-dev'];
-  const [isModalOpen, setIsModalOpen] = useState(false);
+// ── generateStaticParams ─────────────────────────────────────────────────────
+// Pre-generates all known service slug pages at build time (SSG).
+export async function generateStaticParams() {
+  return Object.keys(serviceData).map((slug) => ({ slug }));
+}
+
+// ── generateMetadata ─────────────────────────────────────────────────────────
+// Each service slug gets a unique title, description, canonical, and OG tags.
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const data = serviceData[slug];
+
+  if (!data) {
+    return {
+      title: 'Service Not Found | NetBots',
+      robots: { index: false },
+    };
+  }
+
+  const canonicalUrl = `https://netbots.io/services/${slug}`;
+  return {
+    title: data.metaTitle,
+    description: data.metaDescription,
+    alternates: { canonical: canonicalUrl },
+    openGraph: {
+      title: data.metaTitle,
+      description: data.metaDescription,
+      url: canonicalUrl,
+      siteName: 'NetBots',
+      type: 'website',
+      images: [{ url: 'https://netbots.io/og-image.jpg', width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: data.metaTitle,
+      description: data.metaDescription,
+    },
+  };
+}
+
+// ── Page ─────────────────────────────────────────────────────────────────────
+export default async function ServicePage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const data = serviceData[slug];
+
+  // Unknown slugs get a proper 404 — no more "renders default content for any slug"
+  if (!data) notFound();
 
   return (
     <div className={styles.pageWrapper}>
       <Header />
       <main className={styles.main}>
+        {/* JSON-LD injected server-side — visible to crawlers in initial HTML */}
         <ProfessionalServiceSchema
           name={data.title}
           description={data.desc}
@@ -82,84 +147,36 @@ export default function ServicePage() {
         />
 
         <section className={styles.heroSection}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <span className={styles.preHeadline}>SERVICE</span>
-            <h1 className={styles.title}>{data.title}</h1>
-            <p className={styles.description}>{data.desc}</p>
+          <span className={styles.preHeadline}>SERVICE</span>
+          <h1 className={styles.title}>{data.title}</h1>
+          <p className={styles.description}>{data.desc}</p>
 
-            <div className={styles.stackGrid}>
-              {data.stack.map((tech, i) => (
-                <motion.span
-                  key={tech}
-                  className={styles.stackTag}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.4 + i * 0.1 }}
-                >
-                  {tech}
-                </motion.span>
-              ))}
-            </div>
-          </motion.div>
+          <div className={styles.stackGrid}>
+            {data.stack.map((tech) => (
+              <span key={tech} className={styles.stackTag}>
+                {tech}
+              </span>
+            ))}
+          </div>
         </section>
 
         <section className={styles.detailsSection}>
           <div className={styles.detailsGrid}>
-            <motion.div
-              className={styles.detailCard}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
+            <div className={styles.detailCard}>
               <h2 className={styles.detailLabel}>Our Approach</h2>
               <p className={styles.detailText}>{data.approach}</p>
-            </motion.div>
-
-            <motion.div
-              className={styles.detailCard}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-            >
+            </div>
+            <div className={styles.detailCard}>
               <h2 className={styles.detailLabel}>Business Impact</h2>
               <p className={styles.detailText}>{data.impact}</p>
-            </motion.div>
+            </div>
           </div>
         </section>
 
-        <section className={styles.ctaSection}>
-          <motion.div
-            className={styles.ctaContainer}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className={styles.ctaTitle}>Not sure which service fits?</h2>
-            <p className={styles.ctaDesc}>
-              Book a free architecture audit and we'll recommend the right
-              approach for your challenge.
-            </p>
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className={styles.ctaButton}
-            >
-              Book Your Free Architecture Audit
-            </button>
-          </motion.div>
-        </section>
+        {/* Interactive CTA + modal isolated to a client leaf component */}
+        <ServiceCTA />
       </main>
       <Footer />
-      <LeadCaptureModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
     </div>
   );
 }

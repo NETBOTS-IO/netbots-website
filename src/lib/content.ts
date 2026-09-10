@@ -54,7 +54,8 @@ export const navigation = {
   header: [
     { label: 'Services', href: '/services' },
     { label: 'Products', href: '/products' },
-    { label: 'Case Studies', href: '/case-studies' },
+    { label: 'Portfolio', href: '/portfolio' },
+    { label: 'Blog', href: '/blog' },
     { label: 'About', href: '/about' },
     { label: 'FAQ', href: '/faq' },
   ],
@@ -63,7 +64,8 @@ export const navigation = {
       title: 'Company',
       links: [
         { label: 'About Us', href: '/about' },
-        { label: 'Case Studies', href: '/case-studies' },
+        { label: 'Engineering Blog', href: '/blog' },
+        { label: 'Portfolio', href: '/portfolio' },
         { label: 'Training & Academy', href: '/training' },
         { label: 'Careers', href: '/careers' },
         { label: 'Contact', href: '/contact' },
@@ -72,10 +74,12 @@ export const navigation = {
     {
       title: 'Services',
       links: [
-        { label: 'Web Architecture', href: '/services#web-architecture' },
-        { label: 'AI Integration', href: '/services#ai-integration' },
-        { label: 'Digital Marketing', href: '/services#digital-marketing' },
-        { label: 'Secure DevOps', href: '/services#secure-devops' },
+        // Direct links to individual service pages — builds internal PageRank to sub-pages
+        { label: 'Web Architecture', href: '/services/software-dev' },
+        { label: 'AI Integration', href: '/services/ai-automation' },
+        { label: 'Digital Marketing', href: '/services/ui-ux' },
+        { label: 'Secure DevOps', href: '/services/marketing' },
+        { label: 'All Services', href: '/services' },
       ],
     },
     {
@@ -211,24 +215,24 @@ export const partners: Partner[] = [
 export const blogPosts: BlogPost[] = [
   {
     id: 'post-1',
-    category: 'AI ENGINEERING',
-    title: 'Why Local-First AI Deployment Matters for Data-Sensitive Industries',
-    readTime: '4 MIN READ',
-    link: '/faq',
+    category: 'WEB ARCHITECTURE',
+    title: 'Architecting Enterprise Next.js Applications with Sub-Second Load Times',
+    readTime: '6 MIN READ',
+    link: '/blog/architecting-enterprise-nextjs-applications',
   },
   {
     id: 'post-2',
-    category: 'WEB ARCHITECTURE',
-    title: 'MERN Stack vs. Monolith: When Microservices Make Financial Sense',
+    category: 'AI & AUTOMATION',
+    title: 'AI Agents vs Traditional Automations: What Actually Drives Enterprise ROI in 2026?',
     readTime: '5 MIN READ',
-    link: '/services',
+    link: '/blog/ai-agents-vs-traditional-automations-roi',
   },
   {
     id: 'post-3',
-    category: 'GROWTH',
-    title: 'How Automated Workflows Freed 40 Hours per Week for an SME Finance Team',
-    readTime: '3 MIN READ',
-    link: '/case-studies',
+    category: 'AGENCY SCALING',
+    title: 'From Zero to $1M: The Technical & Operational Playbook for Agency Founders',
+    readTime: '7 MIN READ',
+    link: '/blog/zero-to-one-million-scaling-digital-agency',
   },
 ];
 

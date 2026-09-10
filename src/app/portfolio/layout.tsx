@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'Portfolio & Case Studies | Net Bots',
   description: 'Explore the high-performance enterprise platforms and agentic AI systems we’ve engineered for clients worldwide.',
   keywords: ['custom software development company', 'web development Gilgit-Baltistan', 'Net Bots portfolio'],
+  alternates: { canonical: 'https://netbots.io/portfolio' },
 };
 
 export default function PortfolioLayout({

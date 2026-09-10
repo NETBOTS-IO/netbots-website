@@ -24,12 +24,13 @@ export const metadata: Metadata = {
     'Bookme reservation sync hotel software',
     'NetBots hotel software PMS'
   ],
+  alternates: { canonical: 'https://netbots.io/products/hotel-sync' },
   openGraph: {
     title: 'HotelSync | The Ultimate Hotel Management System & PMS',
     description: 'Run your hotel operations, F&B POS, payroll, and accounting offline. Designed for ultimate stability in remote tourism hubs like Skardu and Hunza.',
     url: 'https://netbots.io/products/hotel-sync',
     type: 'website',
-  }
+  },
 };
 
 export default function HotelSyncLayout({

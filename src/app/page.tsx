@@ -176,6 +176,7 @@ export default function Home() {
                   alt={client.alt}
                   width={120}
                   height={42}
+                  sizes="120px"
                   style={{
                     objectFit: 'contain',
                     filter: 'grayscale(100%) opacity(70%)',
