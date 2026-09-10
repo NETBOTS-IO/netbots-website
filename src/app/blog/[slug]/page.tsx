@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Clock, Calendar, ArrowLeft, ArrowRight, Sparkles, ExternalLink } from 'lucide-react';
+import { Clock, Calendar, ArrowLeft, ArrowRight, Sparkles, ExternalLink, CheckCircle2, BarChart3, ShieldCheck, BookOpen } from 'lucide-react';
 import { getPostBySlug, getPostSlugs, getRelatedPosts } from '@/lib/sanity/client';
 import { urlForImage } from '@/lib/sanity/image';
 import { Header } from '@/components/layout/Header';
@@ -129,15 +129,15 @@ export default async function BlogPostPage({ params }: PageProps) {
     }
   }
 
-  // Structured Data (JSON-LD)
-  const jsonLdArticle = {
+  // Structured Data (JSON-LD): Article / BlogPosting
+  const jsonLdArticle: Record<string, any> = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.excerpt,
     image: imageUrl ? [imageUrl] : [],
     datePublished: post.publishedAt,
-    dateModified: post.publishedAt,
+    dateModified: (post as any)._updatedAt || post.lastReviewedAt || post.publishedAt,
     author: {
       '@type': 'Person',
       name: post.author?.name || 'Saqlain Shah',
@@ -158,6 +158,26 @@ export default async function BlogPostPage({ params }: PageProps) {
       '@id': currentUrl,
     },
     keywords: post.seo?.keywords?.join(', ') || post.tags?.join(', '),
+    // E-E-A-T: Expertise — inject reviewedBy into schema.org
+    ...(post.reviewedBy?.name && {
+      reviewedBy: {
+        '@type': 'Person',
+        name: post.reviewedBy.name,
+        jobTitle: post.reviewedBy.role || '',
+        description: post.reviewedBy.credentials || '',
+        url: post.reviewedBy.linkedIn || '',
+      },
+    }),
+    // E-E-A-T: Authoritativeness — inject citations into schema.org
+    ...(post.citations && post.citations.length > 0 && {
+      citation: post.citations.map((c) => ({
+        '@type': 'CreativeWork',
+        name: c.title,
+        url: c.url,
+        publisher: c.publisher ? { '@type': 'Organization', name: c.publisher } : undefined,
+        datePublished: c.year || undefined,
+      })),
+    }),
   };
 
   const jsonLdBreadcrumbs = {
@@ -184,6 +204,23 @@ export default async function BlogPostPage({ params }: PageProps) {
       },
     ],
   };
+
+  // E-E-A-T: Trustworthiness — FAQPage schema for Google rich snippets
+  const jsonLdFaq =
+    post.faqs && post.faqs.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: post.faqs.map((faq) => ({
+            '@type': 'Question',
+            name: faq.question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: faq.answer,
+            },
+          })),
+        }
+      : null;
 
   const jsonLdVideo =
     youtubeBlock && youtubeVideoId
@@ -212,6 +249,12 @@ export default async function BlogPostPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumbs) }}
       />
+      {jsonLdFaq && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }}
+        />
+      )}
       {jsonLdVideo && (
         <script
           type="application/ld+json"
@@ -268,12 +311,43 @@ export default async function BlogPostPage({ params }: PageProps) {
                     <Clock size={13} /> {post.estimatedReadTime || '5 min read'}
                   </span>
                 </span>
+                {/* E-E-A-T: Expertise — Reviewer Badge */}
+                {post.reviewedBy?.name && (
+                  <span className={styles.reviewerBadge}>
+                    <ShieldCheck size={13} />
+                    Fact-checked by {post.reviewedBy.name}
+                    {post.reviewedBy.credentials && ` · ${post.reviewedBy.credentials}`}
+                  </span>
+                )}
               </div>
             </div>
 
             {/* Social Share Bar */}
             <ShareBar title={post.title} url={currentUrl} />
           </div>
+
+          {/* E-E-A-T: Experience — Key Takeaways / TL;DR Box */}
+          {post.keyTakeaways && post.keyTakeaways.length > 0 && (
+            <div className={styles.keyTakeawaysBox}>
+              <div className={styles.keyTakeawaysTitle}>
+                <CheckCircle2 size={14} />
+                Key Takeaways — TL;DR
+              </div>
+              <ul className={styles.keyTakeawaysList}>
+                {post.keyTakeaways.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* E-E-A-T: Experience — Highlight Banner */}
+          {post.experienceHighlight && (
+            <div className={styles.experienceHighlightBanner}>
+              <BarChart3 size={18} />
+              <span>{post.experienceHighlight}</span>
+            </div>
+          )}
         </article>
 
         {/* Featured Image */}
@@ -299,7 +373,93 @@ export default async function BlogPostPage({ params }: PageProps) {
             {/* PortableText Renderer supporting Rich Text, Headings with auto-IDs, YouTube, Images, Quotes */}
             <PortableTextRenderer value={post.body} />
 
-            {/* Author Bio Box */}
+            {/* E-E-A-T: Expertise — Technical Reviewer Box */}
+            {post.reviewedBy?.name && (
+              <div className={styles.reviewerBox}>
+                {post.reviewedBy.avatarUrl && (
+                  <div className={styles.reviewerAvatar}>
+                    <Image
+                      src={post.reviewedBy.avatarUrl}
+                      alt={post.reviewedBy.name}
+                      fill
+                      sizes="52px"
+                      style={{ objectFit: 'cover' }}
+                    />
+                  </div>
+                )}
+                <div className={styles.reviewerContent}>
+                  <div className={styles.reviewerLabel}>Technically Reviewed By</div>
+                  <h4 className={styles.reviewerName}>{post.reviewedBy.name}</h4>
+                  {post.reviewedBy.role && (
+                    <div className={styles.reviewerRole}>{post.reviewedBy.role}</div>
+                  )}
+                  {post.reviewedBy.credentials && (
+                    <span className={styles.reviewerCredentials}>{post.reviewedBy.credentials}</span>
+                  )}
+                  {post.reviewedBy.bio && (
+                    <p className={styles.reviewerBio}>{post.reviewedBy.bio}</p>
+                  )}
+                  {post.reviewedBy.linkedIn && (
+                    <a
+                      href={post.reviewedBy.linkedIn}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.reviewerBadge}
+                      style={{ marginTop: '0.5rem' }}
+                    >
+                      <ExternalLink size={11} /> LinkedIn
+                    </a>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* E-E-A-T: Trustworthiness — FAQ Section */}
+            {post.faqs && post.faqs.length > 0 && (
+              <div className={styles.faqSection}>
+                <h2 className={styles.faqTitle}>Frequently Asked Questions</h2>
+                <div className={styles.faqList}>
+                  {post.faqs.map((faq, i) => (
+                    <div key={i} className={styles.faqItem}>
+                      <div className={styles.faqQuestion}>
+                        <span>{faq.question}</span>
+                      </div>
+                      <div className={styles.faqAnswer}>{faq.answer}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* E-E-A-T: Authoritativeness — Citations / References */}
+            {post.citations && post.citations.length > 0 && (
+              <div className={styles.citationsSection}>
+                <div className={styles.citationsTitle}>
+                  <BookOpen size={13} />
+                  Authoritative Sources & References
+                </div>
+                <ul className={styles.citationsList}>
+                  {post.citations.map((citation, i) => (
+                    <li key={i} className={styles.citationItem}>
+                      <a
+                        href={citation.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.citationLink}
+                      >
+                        {citation.title}
+                      </a>
+                      {(citation.publisher || citation.year) && (
+                        <span className={styles.citationPublisher}>
+                          — {[citation.publisher, citation.year].filter(Boolean).join(', ')}
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             <div className={styles.authorBox}>
               <div className={styles.authorBoxAvatar}>
                 <Image

@@ -6,14 +6,18 @@ export const postsQuery = `
     publishedAt,
     excerpt,
     mainImage,
+    mainImageUrl,
     category,
     tags,
     estimatedReadTime,
     featured,
+    keyTakeaways,
+    experienceHighlight,
     author->{
       name,
       role,
       image,
+      avatarUrl,
       bio
     }
   }
@@ -22,21 +26,32 @@ export const postsQuery = `
 export const postBySlugQuery = `
   *[_type == "post" && slug.current == $slug][0] {
     _id,
+    _updatedAt,
     title,
     slug,
     publishedAt,
+    lastReviewedAt,
     excerpt,
     mainImage,
+    mainImageUrl,
     category,
     tags,
     estimatedReadTime,
     featured,
     body,
     seo,
+    // E-E-A-T fields
+    keyTakeaways,
+    experienceHighlight,
+    reviewedBy,
+    citations,
+    faqs,
     author->{
       name,
       role,
       image,
+      avatarUrl,
+      avatar,
       bio,
       linkedIn,
       twitter
@@ -61,11 +76,13 @@ export const relatedPostsQuery = `
     publishedAt,
     excerpt,
     mainImage,
+    mainImageUrl,
     category,
     estimatedReadTime,
     author->{
       name,
-      image
+      image,
+      avatarUrl
     }
   }
 `;

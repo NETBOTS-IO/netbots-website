@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { Inter, Space_Mono } from "next/font/google";
 import "./globals.css";
 import { OrganizationSchema } from '@/components/structured-data/OrganizationSchema';
+import { WebSiteSchema } from '@/components/structured-data/WebSiteSchema';
 import { Analytics } from '@/components/tracking/Analytics';
-import { CookieBanner } from '@/components/consent/CookieBanner';
 import { UTMTracker } from '@/components/tracking/UTMTracker';
 import { Suspense } from 'react';
 import Script from 'next/script';
@@ -99,6 +99,7 @@ export default async function RootLayout({
     <html lang="en" className={`${inter.variable} ${spaceMono.variable}`} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://scripts.clarity.ms" />
+        <link rel="preconnect" href="https://www.clarity.ms" />
         <link rel="alternate" href="https://netbots.io" hrefLang="en-US" />
         {process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production' && (
           <meta name="robots" content="noindex, nofollow" />
@@ -115,6 +116,7 @@ export default async function RootLayout({
           `}
         </Script>
         <OrganizationSchema />
+        <WebSiteSchema />
         <Suspense fallback={null}>
           <Analytics />
         </Suspense>
@@ -122,7 +124,6 @@ export default async function RootLayout({
           <UTMTracker />
         </Suspense>
         {children}
-        <CookieBanner />
       </body>
     </html>
   );

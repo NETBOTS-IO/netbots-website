@@ -58,7 +58,7 @@ export default function CaseStudiesPage() {
         <BreadcrumbListSchema
           items={[
             { name: 'Home', item: 'https://netbots.io/' },
-            { name: 'Case Studies', item: 'https://netbots.io/case-studies' },
+            { name: 'Portfolio', item: 'https://netbots.io/portfolio' },
           ]}
         />
 
@@ -105,7 +105,7 @@ export default function CaseStudiesPage() {
             >
               <div className={styles.caseHeader}>
                 <span className={styles.caseIndustry}>{cs.industry}</span>
-                <span className={styles.caseClient}>{cs.client}</span>
+                <h2 className={styles.caseClient}>{cs.client}</h2>
               </div>
 
               <div className={styles.caseBody}>

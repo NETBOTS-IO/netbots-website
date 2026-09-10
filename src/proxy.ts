@@ -42,6 +42,13 @@ function buildCsp(nonce: string): string {
 export function proxy(request: NextRequest) {
   const { nextUrl, headers } = request;
 
+  // ── 0. Skip all /api/* routes — no CSP/nonce injection on API endpoints ──────
+  // This allows local PC scripts sending HTTP (not HTTPS) requests to /api/ without
+  // the `upgrade-insecure-requests` CSP directive blocking or mutating the request.
+  if (nextUrl.pathname.startsWith('/api/')) {
+    return NextResponse.next();
+  }
+
   // ── 1. www → non-www canonical redirect ───────────────────────────────────
   const host = headers.get('host') ?? '';
   if (host.startsWith('www.') && process.env.NODE_ENV === 'production') {

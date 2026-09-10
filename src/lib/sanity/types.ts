@@ -38,11 +38,40 @@ export interface ImageValue {
   caption?: string;
 }
 
+// ─────────────────────────────────────────────────────────────────
+// E-E-A-T Interfaces
+// ─────────────────────────────────────────────────────────────────
+
+/** E-E-A-T: Expertise — Technical reviewer or fact-checker */
+export interface EEATReviewer {
+  name: string;
+  role?: string;
+  bio?: string;
+  credentials?: string;
+  linkedIn?: string;
+  avatarUrl?: string;
+}
+
+/** E-E-A-T: Authoritativeness — Authoritative external citation */
+export interface EEATCitation {
+  title: string;
+  url: string;
+  publisher?: string;
+  year?: string;
+}
+
+/** E-E-A-T: Trustworthiness — FAQ item for FAQPage schema */
+export interface EEATFAQ {
+  question: string;
+  answer: string;
+}
+
 export interface BlogPost {
   _id: string;
   title: string;
   slug: { current: string } | string;
   publishedAt: string;
+  lastReviewedAt?: string;       // E-E-A-T: Trustworthiness — content freshness
   excerpt: string;
   mainImage?: any;
   mainImageUrl?: string;
@@ -57,6 +86,12 @@ export interface BlogPost {
     metaDescription?: string;
     keywords?: string[];
   };
+  // E-E-A-T fields
+  keyTakeaways?: string[];        // Experience — TL;DR bullet points
+  experienceHighlight?: string;   // Experience — first-hand case-study highlight
+  reviewedBy?: EEATReviewer;      // Expertise — technical reviewer
+  citations?: EEATCitation[];     // Authoritativeness — authoritative sources
+  faqs?: EEATFAQ[];               // Trustworthiness — FAQ structured data
 }
 
 export interface TableOfContentsItem {

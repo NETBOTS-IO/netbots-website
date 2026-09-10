@@ -93,8 +93,21 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        // Apply strict security headers to all routes EXCEPT /studio
-        source: '/((?!studio).*)',
+        // ── API routes: permissive CORS so local PC scripts can hit them without CORS errors ──
+        // Applies to all /api/* routes including /api/blog/publish
+        source: '/api/:path*',
+        headers: [
+          { key: 'Access-Control-Allow-Origin', value: '*' },
+          { key: 'Access-Control-Allow-Methods', value: 'GET, POST, PUT, DELETE, OPTIONS' },
+          { key: 'Access-Control-Allow-Headers', value: 'Content-Type, Authorization, X-API-KEY, x-api-key, Accept' },
+          { key: 'Access-Control-Max-Age', value: '86400' },
+          // Override COOP to allow cross-origin API calls from non-browser scripts
+          { key: 'Cross-Origin-Opener-Policy', value: 'unsafe-none' },
+        ],
+      },
+      {
+        // Apply strict security headers to all routes EXCEPT /studio and /api
+        source: '/((?!studio|api).*)',
         headers: securityHeaders,
       },
       {

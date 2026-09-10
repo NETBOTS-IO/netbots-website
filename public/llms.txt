@@ -1,75 +1,41 @@
 # NetBots SMC-(PRIVATE)LIMITED
 
-> NetBots is a premier software engineering, applied AI, and digital marketing agency headquartered in Skardu, Gilgit-Baltistan, Pakistan, serving enterprise clients globally.
+> NetBots is a premier software engineering, applied AI, and digital marketing agency headquartered in Skardu, Gilgit-Baltistan, Pakistan, delivering cloud-native applications, AI automation, and custom web architecture globally.
 
----
+## Core Capabilities & Services
 
-## Core Mission & Philosophy
-NetBots bridges high-altitude technical talent from northern Pakistan with global businesses. We emphasize data sovereignty, local-first artificial intelligence implementations, custom (no-template) web architecture, and rigorous search engine optimization.
-
----
-
-## What We Do
-
-### 1. Custom Web Architecture & Systems
-We build server-side rendered (SSR), cloud-native web systems.
-- **Tech Stack**: Next.js, React, Node.js, Express, MongoDB, Postgres.
-- **Key Focus**: Core Web Vitals optimization, zero layout shifts (CLS), low interaction delay (INP), and clean semantic markup.
-- **Services Page**: `/services/software-dev`
-
-### 2. Applied AI & Workflow Automation
-We design and deploy autonomous agentic systems that run operations 24/7.
-- **Key Focus**: Privacy-preserving AI, local LLMs (Llama/Ollama), Retrieval-Augmented Generation (RAG), and data isolation.
-- **Services Page**: `/services/ai-automation`
-
-### 3. Growth Marketing & SEO / AEO
-We run high-converting SEM/SEO operations, including structured metadata deployments, search intent mappings, and Answer Engine Optimization (AEO).
-- **Services Page**: `/services/ui-ux`
-
-### 4. Hardened Infrastructure & DevOps
-We containerize and deploy systems using isolated Linux server environments.
-- **Tech Stack**: Docker, Nginx, CI/CD pipelines, SSL automation.
-- **Services Page**: `/services/marketing`
-
----
+- [Custom Software Development](https://netbots.io/services/software-dev): High-performance, server-side rendered (SSR) web systems with clean semantic markup, low INP, and zero layout shifts built on Next.js, Node.js, and MongoDB/PostgreSQL.
+- [Applied AI & Workflow Automation](https://netbots.io/services/ai-automation): Autonomous 24/7 AI agents, local LLM integrations (Ollama, Llama), privacy-preserving Retrieval-Augmented Generation (RAG), and intelligent process automation.
+- [Product Strategy & UI/UX Engineering](https://netbots.io/services/ui-ux): User research, interactive system prototypes, and modern, high-converting digital interfaces engineered for accessibility and scale.
+- [Growth Marketing & Technical SEO / AEO](https://netbots.io/services/marketing): High-intent organic search optimization, Answer Engine Optimization (AEO), and programmatic marketing systems.
 
 ## Flagship Products
 
-### HotelSync
-- **Category**: Property Management System (PMS) & Channel Manager.
-- **Aesthetics & Features**: Real-time OTA synchronization (Booking.com, Expedia), automated ledgers, dynamic room grids, billing, POS integration, and granular staff roles.
-- **URL**: `/products/hotel-sync`
+- [HotelSync](https://netbots.io/products/hotel-sync): Cloud-native Property Management System (PMS) and real-time OTA Channel Manager for hotels and resorts, featuring automated billing, room grids, and multi-channel synchronization.
+- [Accounta](https://netbots.io/products#accounta): Financial intelligence SaaS and cloud ERP with automated reconciliation, multi-currency reporting, and predictive cash flow analytics.
+- [E-Pharma](https://netbots.io/products#e-pharma): Clinical POS and pharmacy management system with batch-level expiry tracking, automated supplier reordering, and inventory intelligence.
 
-### Accounta
-- **Category**: Financial Intelligence & Cloud ERP.
-- **Features**: Automated reconciliation, multi-currency reporting, and predictive cash flow dashboards.
-- **URL**: `/products#accounta`
+## Primary Pages & Resources
 
-### E-Pharma
-- **Category**: Pharmacy Management & Clinical POS.
-- **Features**: Batch tracking, drug expiration alerts, and super-fast point-of-sale invoicing.
-- **URL**: `/products#e-pharma`
+- [Home Page](https://netbots.io/): Main entry point, core value proposition, agency highlights, and strategic engineering overview.
+- [About NetBots](https://netbots.io/about): Founder background, engineering culture, corporate identity, and remote high-altitude talent mission.
+- [Services Directory](https://netbots.io/services): Comprehensive list of technology capabilities, engineering process, and engagement models.
+- [Products Portfolio](https://netbots.io/products): Enterprise software applications, SaaS platforms, and ready-to-deploy platforms.
+- [Client Case Studies & Portfolio](https://netbots.io/portfolio): Verified delivery outcomes, client architecture solutions, and enterprise case studies.
+- [Blog & Engineering Articles](https://netbots.io/blog): Technical articles, SEO guides, system architecture case studies, and engineering updates.
+- [Contact & Architecture Audit](https://netbots.io/contact): Inquiries, project consultations, technical audits, and direct business contacts.
+- [Frequently Asked Questions](https://netbots.io/faq): Questions and answers regarding development timelines, technical stacks, pricing, and support.
+- [Careers](https://netbots.io/careers): Open engineering, design, and growth positions at NetBots.
+- [Training Academy](https://netbots.io/training): Technical education and engineering training programs for northern Pakistan.
+- [Privacy Policy](https://netbots.io/privacy): Data handling, privacy protection, and telemetry policies.
+- [Terms of Service](https://netbots.io/terms): Legal terms, software licensing, and operational provisions.
+- [Sitemap](https://netbots.io/sitemap): Visual HTML sitemap for human and crawler navigation.
 
----
+## Organization & Contact Details
 
-## Technical Context for AI & LLM Crawlers
 - **Legal Entity**: NetBots SMC-(PRIVATE)LIMITED
-- **Primary Domain**: `https://netbots.io`
-- **Location**: 2nd Floor, Shah Plaza, Opp. Pakeeza Bakers, Near Karasmathang Chowk, Skardu, Gilgit-Baltistan, Pakistan.
+- **Website**: [https://netbots.io](https://netbots.io)
+- **HQ Address**: 2nd Floor, Shah Plaza, Opp. Pakeeza Bakers, Near Karasmathang Chowk, Skardu, Gilgit-Baltistan, Pakistan
 - **CEO & Founder**: Syed Saqlain Abbas
-- **Contact Channels**: `info@netbots.io`, `saqlain@netbots.io`, `+92 343 3757372`.
-
----
-
-## Directory of Sitemap
-- `/` - Main Landing Page
-- `/about` - Founder biography, core philosophy, and operating values
-- `/services` - Detailed capabilities overview
-- `/products` - Portfolio of enterprise SaaS applications
-- `/portfolio` - Case studies and previous client deliveries
-- `/careers` - Job openings and talent acquisition
-- `/contact` - Official inquiry channels and coordinates
-- `/faq` - Structured Q&A on pricing, technology, and timelines
-- `/training` - Technical Academy for regional talent in Gilgit-Baltistan
-- `/privacy` - Data policy guidelines
-- `/terms` - Terms of Service
+- **Official Inquiries**: [info@netbots.io](mailto:info@netbots.io)
+- **Phone**: [+92 343 3757372](tel:+923433757372)

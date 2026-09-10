@@ -355,3 +355,269 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   E-E-A-T Components
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Experience: Key Takeaways / TL;DR Box ── */
+.keyTakeawaysBox {
+  background: linear-gradient(135deg, #f0f6ff 0%, #e8f0fe 100%);
+  border: 1.5px solid rgba(0, 82, 255, 0.18);
+  border-radius: 16px;
+  padding: 1.75rem 2rem;
+  margin: 2.5rem 0 2rem 0;
+}
+
+.keyTakeawaysTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #0052ff;
+  margin-bottom: 1rem;
+}
+
+.keyTakeawaysList {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.keyTakeawaysList li {
+  font-size: 0.97rem;
+  color: #1e293b;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+/* ── Experience: Experience Highlight Banner ── */
+.experienceHighlightBanner {
+  background: linear-gradient(135deg, #0052ff 0%, #003acc 100%);
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0 2rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.5;
+  box-shadow: 0 4px 20px rgba(0, 82, 255, 0.25);
+}
+
+.experienceHighlightBanner svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  opacity: 0.9;
+}
+
+/* ── Expertise: Reviewer Badge (in author meta row) ── */
+.reviewerBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #f0fdf4;
+  border: 1.5px solid #a7f3d0;
+  border-radius: 8px;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #065f46;
+  margin-top: 0.75rem;
+  text-decoration: none;
+}
+
+.reviewerBadge svg {
+  flex-shrink: 0;
+}
+
+/* Full reviewer box inside article body */
+.reviewerBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-left: 4px solid #0052ff;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin: 2.5rem 0;
+}
+
+.reviewerAvatar {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #e2e8f0;
+}
+
+.reviewerContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.reviewerLabel {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+  margin-bottom: 0.2rem;
+}
+
+.reviewerName {
+  font-size: 0.97rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 0.15rem 0;
+}
+
+.reviewerRole {
+  font-size: 0.82rem;
+  color: #0052ff;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.reviewerCredentials {
+  font-size: 0.78rem;
+  color: #475569;
+  font-weight: 500;
+  background: #eff6ff;
+  border-radius: 6px;
+  padding: 0.2rem 0.5rem;
+  display: inline-block;
+  margin-bottom: 0.35rem;
+}
+
+.reviewerBio {
+  font-size: 0.85rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0.25rem 0 0 0;
+}
+
+/* ── Trustworthiness: FAQ Section ── */
+.faqSection {
+  margin: 3.5rem 0 2rem 0;
+}
+
+.faqTitle {
+  font-size: clamp(1.4rem, 2.5vw, 1.75rem);
+  font-weight: 900;
+  color: #0f172a;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.5rem;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.faqItem {
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.faqItem:hover {
+  border-color: rgba(0, 82, 255, 0.3);
+}
+
+.faqQuestion {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 1.1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  cursor: pointer;
+  font-size: 0.97rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.4;
+}
+
+.faqAnswer {
+  padding: 0 1.5rem 1.2rem 1.5rem;
+  font-size: 0.95rem;
+  color: #334155;
+  line-height: 1.75;
+  border-top: 1px solid #f1f5f9;
+}
+
+/* ── Authoritativeness: Citations / References ── */
+.citationsSection {
+  margin: 2.5rem 0 0 0;
+  padding: 1.5rem;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+}
+
+.citationsTitle {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #64748b;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.citationsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.citationItem {
+  font-size: 0.88rem;
+  color: #475569;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.citationItem::before {
+  content: '↗';
+  color: #0052ff;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.citationLink {
+  color: #0052ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.citationLink:hover {
+  text-decoration: underline;
+}
+
+.citationPublisher {
+  color: #94a3b8;
+  font-size: 0.78rem;
+}
