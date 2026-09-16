@@ -77,8 +77,9 @@ export const navigation = {
         // Direct links to individual service pages — builds internal PageRank to sub-pages
         { label: 'Web Architecture', href: '/services/software-dev' },
         { label: 'AI Integration', href: '/services/ai-automation' },
-        { label: 'Digital Marketing', href: '/services/ui-ux' },
-        { label: 'Secure DevOps', href: '/services/marketing' },
+        { label: 'Digital Marketing', href: '/services/marketing' },
+        { label: 'Secure DevOps', href: '/services/devops' },
+        { label: 'UI/UX Design', href: '/services/ui-ux' },
         { label: 'All Services', href: '/services' },
       ],
     },

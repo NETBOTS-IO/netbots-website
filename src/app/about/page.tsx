@@ -22,6 +22,12 @@ const LinkedinIcon = ({ size = 16 }: { size?: number }) => (
   </svg>
 );
 
+const WhatsappIcon = ({ size = 16 }: { size?: number }) => (
+  <svg viewBox="0 0 24 24" width={size} height={size} stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+  </svg>
+);
+
 export default function AboutPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -122,58 +128,129 @@ export default function AboutPage() {
         {/* Leadership */}
         <section className={styles.leadershipSection}>
           <h2 className={styles.sectionTitle}>Leadership</h2>
-          <motion.div
-            className={styles.leaderCard}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <div className={styles.leaderAvatar} style={{ overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Image src="/images/profileImage-ceo.avif" alt="Syed Saqlain Abbas" width={100} height={100} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-            </div>
-            <div className={styles.leaderInfo}>
-              <h3 className={styles.leaderName}>Syed Saqlain Abbas</h3>
-              <span className={styles.leaderRole}>Founder & CEO</span>
+          <div className={styles.leadersGrid}>
+            {/* CEO Card */}
+            <motion.div
+              className={styles.leaderCard}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className={styles.leaderHeader}>
+                <div className={styles.leaderAvatar}>
+                  <Image 
+                    src="/images/saqlain-ceo.avif" 
+                    alt="Syed Saqlain Abbas - Founder & CEO NetBots" 
+                    width={96} 
+                    height={96} 
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                  />
+                </div>
+                <div className={styles.leaderInfo}>
+                  <h3 className={styles.leaderName}>Syed Saqlain Abbas</h3>
+                  <span className={styles.leaderRole}>Founder & CEO</span>
+                </div>
+              </div>
+
               <p className={styles.leaderBio}>
-                With deep expertise in full-stack development, AI integration, and
-                systems architecture, Syed Saqlain Abbas founded NetBots with a clear mission:
-                bring enterprise-grade technical capability to businesses that have
-                been underserved by the technology market. His philosophy centers on
-                building systems that generate measurable ROI, not just impressive
-                demos.
+                Systems architect and full-stack software engineer with deep expertise in enterprise web architecture, 
+                autonomous agentic workflows, and distributed cloud computing. Syed Saqlain founded NetBots to bring 
+                enterprise-grade technical capability and scalable engineering to ambitious businesses in Pakistan and globally.
               </p>
               
-              <div style={{ marginTop: '1.5rem', display: 'flex', flexWrap: 'wrap', gap: '1.25rem' }}>
+              <div style={{ marginTop: 'auto', display: 'flex', flexWrap: 'wrap', gap: '1.25rem', paddingTop: '0.75rem', borderTop: '1px solid #f1f5f9', width: '100%' }}>
                 <a
                   href="https://www.linkedin.com/in/syedsaqlainabbas110"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Connect with Syed Saqlain Abbas on LinkedIn"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none', color: '#0052ff', fontSize: '0.9rem', fontWeight: 600 }}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', color: '#0052ff', fontSize: '0.88rem', fontWeight: 600 }}
                 >
-                  <LinkedinIcon size={16} />
+                  <LinkedinIcon size={15} />
                   LinkedIn
                 </a>
                 <a
                   href="mailto:saqlain@netbots.io"
                   aria-label="Email Syed Saqlain Abbas"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none', color: '#0052ff', fontSize: '0.9rem', fontWeight: 600 }}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', color: '#0052ff', fontSize: '0.88rem', fontWeight: 600 }}
                 >
-                  <Mail size={16} />
+                  <Mail size={15} />
                   saqlain@netbots.io
                 </a>
                 <a
                   href="tel:+923475484803"
                   aria-label="Call Syed Saqlain Abbas"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none', color: '#0052ff', fontSize: '0.9rem', fontWeight: 600 }}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', color: '#0052ff', fontSize: '0.88rem', fontWeight: 600 }}
                 >
-                  <Phone size={16} />
+                  <Phone size={15} />
                   +92-3475484803
                 </a>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+
+            {/* COO Card */}
+            <motion.div
+              className={styles.leaderCard}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.15, duration: 0.6 }}
+            >
+              <div className={styles.leaderHeader}>
+                <div className={styles.leaderAvatar}>
+                  <Image 
+                    src="/images/karamat-coo.avif" 
+                    alt="Karamat Ali Yousufi - Chief Operating Officer NetBots" 
+                    width={96} 
+                    height={96} 
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                  />
+                </div>
+                <div className={styles.leaderInfo}>
+                  <h3 className={styles.leaderName}>Karamat Ali Yousufi</h3>
+                  <span className={styles.leaderRole}>Chief Operating Officer (COO)</span>
+                </div>
+              </div>
+
+              <p className={styles.leaderBio}>
+                Operations strategist, digital marketing expert, and software engineer directing technical operations, 
+                conversion funnels, and enterprise client relationships at NetBots. Karamat bridges high-conversion digital 
+                marketing psychology with full-stack engineering to ensure client platforms scale predictably and drive sustainable growth.
+              </p>
+              
+              <div style={{ marginTop: 'auto', display: 'flex', flexWrap: 'wrap', gap: '1.25rem', paddingTop: '0.75rem', borderTop: '1px solid #f1f5f9', width: '100%' }}>
+                <a
+                  href="https://www.linkedin.com/in/dev-karamat-ali"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Connect with Karamat Ali Yousufi on LinkedIn"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', color: '#0052ff', fontSize: '0.88rem', fontWeight: 600 }}
+                >
+                  <LinkedinIcon size={15} />
+                  LinkedIn
+                </a>
+                <a
+                  href="https://wa.me/923554135815"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Chat with Karamat Ali Yousufi on WhatsApp"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', color: '#0052ff', fontSize: '0.88rem', fontWeight: 600 }}
+                >
+                  <WhatsappIcon size={15} />
+                  WhatsApp
+                </a>
+                <a
+                  href="tel:+923554135815"
+                  aria-label="Call Karamat Ali Yousufi"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', color: '#0052ff', fontSize: '0.88rem', fontWeight: 600 }}
+                >
+                  <Phone size={15} />
+                  +92-3554135815
+                </a>
+              </div>
+            </motion.div>
+          </div>
         </section>
 
         {/* Engineering Philosophy */}

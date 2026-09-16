@@ -11,7 +11,7 @@ import { useCurrentUser } from 'sanity';
  * Primary security is managed at the Sanity project level (sanity.io/manage).
  * This is an additional UI-level guard.
  */
-const ALLOWED_EMAILS = ['ceo.netbots@gmail.com'];
+const ALLOWED_EMAILS = ['ceo.netbots@gmail.com', 'saqlainshahbaltee@gmail.com'];
 const ALLOWED_DOMAINS = ['netbots.io'];
 
 function isEmailAllowed(email: string | undefined): boolean {

@@ -131,11 +131,15 @@
 
   body {
     @apply bg-background text-foreground;
+    max-width: 100%;
+    overflow-x: clip;
   }
 
   html {
     @apply font-sans;
     scroll-behavior: smooth;
+    max-width: 100%;
+    overflow-x: clip;
   }
 }
 

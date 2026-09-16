@@ -5,6 +5,7 @@ import { OrganizationSchema } from '@/components/structured-data/OrganizationSch
 import { WebSiteSchema } from '@/components/structured-data/WebSiteSchema';
 import { Analytics } from '@/components/tracking/Analytics';
 import { UTMTracker } from '@/components/tracking/UTMTracker';
+import { CookieBanner } from '@/components/consent/CookieBanner';
 import { Suspense } from 'react';
 import Script from 'next/script';
 import { headers } from 'next/headers';
@@ -29,15 +30,26 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://netbots.io'),
   // hreflang: single-language English site, explicitly declare for Google
   alternates: {
+    canonical: 'https://netbots.io',
     languages: {
       'en': 'https://netbots.io',
       'x-default': 'https://netbots.io',
     },
   },
-  // Staging/preview noindex guard — production only
-  robots: process.env.VERCEL_ENV === 'production' || process.env.NODE_ENV === 'production'
-    ? { index: true, follow: true }
-    : { index: false, follow: false },
+  // Robots policy: Safe default is always indexed for production with rich snippet permissions
+  robots: process.env.VERCEL_ENV === 'preview'
+    ? { index: false, follow: false }
+    : {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          'max-video-preview': -1,
+          'max-image-preview': 'large',
+          'max-snippet': -1,
+        },
+      },
   title: {
     default: 'Enterprise Web Development, AI Automation & Digital Marketing Agency | NetBots Pakistan',
     template: '%s | NetBots',
@@ -52,6 +64,9 @@ export const metadata: Metadata = {
     apple: [
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }
     ]
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || '',
   },
   // Focused primary keywords only — Google ignores keyword meta since 2009,
   // keeping only a small set of brand + location terms to avoid Bing spam signal.
@@ -101,9 +116,6 @@ export default async function RootLayout({
         <link rel="preconnect" href="https://scripts.clarity.ms" />
         <link rel="preconnect" href="https://www.clarity.ms" />
         <link rel="alternate" href="https://netbots.io" hrefLang="en-US" />
-        {process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production' && (
-          <meta name="robots" content="noindex, nofollow" />
-        )}
       </head>
       <body style={{ minHeight: '100vh', fontFamily: 'var(--font-inter), system-ui, sans-serif', WebkitFontSmoothing: 'antialiased' }}>
         <Script id="clarity-script" strategy="afterInteractive" nonce={nonce}>
@@ -124,6 +136,7 @@ export default async function RootLayout({
           <UTMTracker />
         </Suspense>
         {children}
+        <CookieBanner />
       </body>
     </html>
   );

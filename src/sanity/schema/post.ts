@@ -163,7 +163,7 @@ export const postSchema = {
           name: 'alt',
           type: 'string',
           title: 'Alternative Text (SEO)',
-          validation: (Rule: any) => Rule.required(),
+          validation: (Rule: any) => Rule.warning('Alternative text is recommended for SEO and accessibility.'),
         },
         {
           name: 'caption',

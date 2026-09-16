@@ -146,7 +146,7 @@ export default function HotelSyncPage() {
           <div className={styles.heroImageWrapper}>
             <Image 
               src="/images/hotel-sync/1.avif" 
-              alt="HotelSync Dashboard" 
+              alt="HotelSync Desktop Dashboard - Offline Property Management System" 
               width={600} 
               height={380} 
               className={styles.heroImage} 
@@ -238,7 +238,7 @@ export default function HotelSyncPage() {
                 </ul>
               </div>
               <div className={styles.showcaseImage}>
-                <Image src="/images/hotel-sync/2.avif" alt="Front Desk Operations" width={600} height={380} className={styles.heroImage} />
+                <Image src="/images/hotel-sync/2.avif" alt="HotelSync Front Desk Operations and Fast Guest Check-in Interface" width={600} height={380} className={styles.heroImage} />
               </div>
             </motion.div>
 
@@ -261,7 +261,7 @@ export default function HotelSyncPage() {
                 </ul>
               </div>
               <div className={styles.showcaseImage}>
-                <Image src="/images/hotel-sync/13.avif" alt="Restaurant POS" width={600} height={380} className={styles.heroImage} />
+                <Image src="/images/hotel-sync/13.avif" alt="HotelSync Touch POS and Restaurant Kitchen Order Ticketing System" width={600} height={380} className={styles.heroImage} />
               </div>
             </motion.div>
 
@@ -311,7 +311,7 @@ export default function HotelSyncPage() {
                 </ul>
               </div>
               <div className={styles.showcaseImage}>
-                <Image src="/images/hotel-sync/10.avif" alt="Accounting Dashboard" width={600} height={380} className={styles.heroImage} />
+                <Image src="/images/hotel-sync/10.avif" alt="HotelSync Financial Accounting Dashboard and Cashbook Ledger" width={600} height={380} className={styles.heroImage} />
               </div>
             </motion.div>
 
@@ -334,7 +334,7 @@ export default function HotelSyncPage() {
                 </ul>
               </div>
               <div className={styles.showcaseImage}>
-                <Image src="/images/hotel-sync/19.avif" alt="Staff Management" width={600} height={380} className={styles.heroImage} />
+                <Image src="/images/hotel-sync/19.avif" alt="HotelSync Staff Management and Automated Shift Payroll Interface" width={600} height={380} className={styles.heroImage} />
               </div>
             </motion.div>
 
@@ -357,7 +357,7 @@ export default function HotelSyncPage() {
                 </ul>
               </div>
               <div className={styles.showcaseImage}>
-                <Image src="/images/hotel-sync/26.avif" alt="Role & Screen Access" width={600} height={380} className={styles.heroImage} />
+                <Image src="/images/hotel-sync/26.avif" alt="HotelSync Role-based User Permissions and Screen Access Security" width={600} height={380} className={styles.heroImage} />
               </div>
             </motion.div>
           </div>

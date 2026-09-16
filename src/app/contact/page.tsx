@@ -7,6 +7,7 @@ import styles from './page.module.css';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { companyInfo } from '@/lib/content';
+import { getStoredUTM } from '@/components/tracking/UTMTracker';
 
 export default function ContactPage() {
   const router = useRouter();
@@ -40,6 +41,7 @@ export default function ContactPage() {
           objective: formData.objective,
           challenge: formData.challenge,
           honeypot: formData.honeypot,
+          utmData: getStoredUTM(),
         }),
       });
 

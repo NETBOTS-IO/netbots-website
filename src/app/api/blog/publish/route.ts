@@ -360,9 +360,39 @@ export async function POST(request: NextRequest) {
     },
   };
 
-  // Optional fields
-  if (body.coverImageUrl) {
+  // Optional Image fields
+  if (body.mainImage && typeof body.mainImage === 'object') {
+    postDoc.mainImage = body.mainImage;
+  }
+
+  if (body.coverImageUrl && typeof body.coverImageUrl === 'string') {
     postDoc.mainImageUrl = body.coverImageUrl;
+
+    // If a base64 data URL is provided, upload directly to Sanity Asset store as native image
+    if (body.coverImageUrl.startsWith('data:image/')) {
+      try {
+        const matches = body.coverImageUrl.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+        if (matches && matches.length === 3) {
+          const contentType = matches[1];
+          const buffer = Buffer.from(matches[2], 'base64');
+          const ext = contentType.split('/')[1] || 'jpg';
+          const asset = await sanityWriteClient.assets.upload('image', buffer, {
+            contentType,
+            filename: `${slug}-cover.${ext}`,
+          });
+          postDoc.mainImage = {
+            _type: 'image',
+            asset: {
+              _type: 'reference',
+              _ref: asset._id,
+            },
+            alt: title.trim(),
+          };
+        }
+      } catch (uploadErr) {
+        console.warn('[Blog API] Base64 image upload to Sanity asset failed, retaining mainImageUrl:', uploadErr);
+      }
+    }
   }
 
   // E-E-A-T optional fields

@@ -15,8 +15,8 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
   const href = `/blog/${slug}`;
 
   const imageSrc =
-    post.mainImageUrl ||
     (post.mainImage ? urlForImage(post.mainImage) : null) ||
+    post.mainImageUrl ||
     'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1000&q=80';
 
   const authorAvatar =

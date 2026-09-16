@@ -5,7 +5,13 @@ export const postsQuery = `
     slug,
     publishedAt,
     excerpt,
-    mainImage,
+    mainImage {
+      ...,
+      asset-> {
+        _id,
+        url
+      }
+    },
     mainImageUrl,
     category,
     tags,
@@ -16,7 +22,13 @@ export const postsQuery = `
     author->{
       name,
       role,
-      image,
+      image {
+        ...,
+        asset-> {
+          _id,
+          url
+        }
+      },
       avatarUrl,
       bio
     }
@@ -32,13 +44,28 @@ export const postBySlugQuery = `
     publishedAt,
     lastReviewedAt,
     excerpt,
-    mainImage,
+    mainImage {
+      ...,
+      asset-> {
+        _id,
+        url
+      }
+    },
     mainImageUrl,
     category,
     tags,
     estimatedReadTime,
     featured,
-    body,
+    body[] {
+      ...,
+      _type == "image" => {
+        ...,
+        asset-> {
+          _id,
+          url
+        }
+      }
+    },
     seo,
     // E-E-A-T fields
     keyTakeaways,
@@ -49,7 +76,13 @@ export const postBySlugQuery = `
     author->{
       name,
       role,
-      image,
+      image {
+        ...,
+        asset-> {
+          _id,
+          url
+        }
+      },
       avatarUrl,
       avatar,
       bio,
@@ -67,7 +100,6 @@ export const postSlugsQuery = `
   }
 `;
 
-
 export const relatedPostsQuery = `
   *[_type == "post" && slug.current != $currentSlug && category == $category] | order(publishedAt desc)[0...3] {
     _id,
@@ -75,13 +107,25 @@ export const relatedPostsQuery = `
     slug,
     publishedAt,
     excerpt,
-    mainImage,
+    mainImage {
+      ...,
+      asset-> {
+        _id,
+        url
+      }
+    },
     mainImageUrl,
     category,
     estimatedReadTime,
     author->{
       name,
-      image,
+      image {
+        ...,
+        asset-> {
+          _id,
+          url
+        }
+      },
       avatarUrl
     }
   }

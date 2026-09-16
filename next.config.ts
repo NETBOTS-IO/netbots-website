@@ -33,19 +33,15 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'images.unsplash.com',
+        hostname: '**',
       },
       {
-        protocol: 'https',
-        hostname: 'cdn.sanity.io',
+        protocol: 'http',
+        hostname: 'localhost',
       },
       {
-        protocol: 'https',
-        hostname: 'img.youtube.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'i.ytimg.com',
+        protocol: 'http',
+        hostname: '127.0.0.1',
       },
     ],
   },
@@ -84,6 +80,11 @@ const nextConfig: NextConfig = {
       {
         source: '/case-studies',
         destination: '/portfolio',
+        permanent: true,
+      },
+      {
+        source: '/services/secure-devops',
+        destination: '/services/devops',
         permanent: true,
       },
     ];

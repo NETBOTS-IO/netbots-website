@@ -7,7 +7,7 @@ export function OrganizationSchema() {
     name: 'Net Bots',
     legalName: 'Net Bots (SMC-Private) Limited',
     url: 'https://netbots.io',
-    logo: 'https://netbots.io/logo.png',
+    logo: 'https://netbots.io/images/netbots-logo-original.avif',
     foundingDate: '2023',
     founders: [
       {

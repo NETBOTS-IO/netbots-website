@@ -38,10 +38,21 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: true, message: 'Processed successfully.' }, { status: 200 });
     }
 
-    const { type, name, email } = body;
+    const { type, name, email, utmData } = body;
     if (!type || !name || !email) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
+
+    const utmHtml = utmData ? `
+      <div class="item" style="background-color: #f1f5f9; padding: 12px; border-radius: 8px; margin-top: 16px;">
+        <div class="label" style="color: #0052ff; font-weight: bold;">Campaign Attribution (UTM)</div>
+        <div class="value" style="font-size: 13px; margin-top: 4px;">
+          <div><strong>Source:</strong> ${utmData.source || 'direct'} | <strong>Medium:</strong> ${utmData.medium || 'organic/none'}</div>
+          <div><strong>Campaign:</strong> ${utmData.campaign || 'N/A'}${utmData.term ? ` | <strong>Term:</strong> ${utmData.term}` : ''}${utmData.content ? ` | <strong>Content:</strong> ${utmData.content}` : ''}</div>
+          <div style="font-size: 11px; color: #64748b; margin-top: 4px;">Captured: ${utmData.timestamp || new Date().toISOString()}</div>
+        </div>
+      </div>
+    ` : '';
 
     let emailSubject = '';
     let emailHtml = '';
@@ -85,6 +96,7 @@ export async function POST(req: Request) {
               <div class="label">Challenge Context</div>
               <div class="value">${body.challenge || 'Not Specified'}</div>
             </div>
+            ${utmHtml}
             <div class="footer">
               Sent automatically from NetBots Platform Core API
             </div>
@@ -289,6 +301,7 @@ export async function POST(req: Request) {
               <div class="label">Context / Challenges</div>
               <div class="value">${body.context || 'Not Specified'}</div>
             </div>
+            ${utmHtml}
             <div class="footer">
               Sent automatically from NetBots Audit Capture API
             </div>

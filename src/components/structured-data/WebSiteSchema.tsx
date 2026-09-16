@@ -8,14 +8,6 @@ export function WebSiteSchema() {
     alternateName: 'Net Bots (SMC-Private) Limited',
     url: 'https://netbots.io',
     description: 'Enterprise Web Development, AI Automation & Digital Marketing Agency based in Skardu, Gilgit-Baltistan.',
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: 'https://netbots.io/search?q={search_term_string}',
-      },
-      'query-input': 'required name=search_term_string',
-    },
   };
 
   return (

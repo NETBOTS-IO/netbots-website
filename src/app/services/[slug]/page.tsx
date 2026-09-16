@@ -48,27 +48,38 @@ const serviceData: Record<
     impact:
       'Drastic reduction in operational overhead; your business runs 24/7 on real-time, data-driven decisions without human bottlenecks.',
   },
-  'ui-ux': {
+  'marketing': {
     title: 'Data-Driven Digital Marketing',
-    metaTitle: 'Data-Driven Digital Marketing & CRO Services | NetBots Pakistan',
-    metaDescription: 'SEO, precision PPC, and conversion rate optimization that maps full customer psychology from first click to final sale. NetBots builds dominant digital footprints in Gilgit-Baltistan and beyond.',
-    desc: 'SEO, precision PPC, and conversion rate optimization (CRO), mapping full customer psychology from first click to final sale.',
-    stack: ['SEO', 'PPC', 'CRO', 'Analytics'],
+    metaTitle: 'Data-Driven Digital Marketing & SEO Services | NetBots Pakistan',
+    metaDescription: 'Enterprise SEO, precision PPC, and conversion rate optimization engineered to drive measurable revenue. NetBots builds dominant digital footprints in Gilgit-Baltistan and globally.',
+    desc: 'Full-funnel SEO, precision PPC, and conversion rate optimization (CRO), mapping complete customer psychology from first click to final conversion.',
+    stack: ['Technical SEO', 'Precision PPC', 'Conversion Optimization', 'Full-Funnel Analytics'],
     approach:
-      "We don't guess; we map. Every campaign is built on customer psychology data, search intent analysis, and conversion funnel architecture that turns clicks into revenue.",
+      "We don't guess; we map. Every campaign is built on customer intent data, deep SERP analysis, and conversion funnel architecture that turns clicks into revenue.",
     impact:
       'A predictable, scalable pipeline of qualified leads and a dominant digital footprint in your target market.',
   },
-  marketing: {
+  'devops': {
     title: 'Secure Infrastructure & DevOps',
-    metaTitle: 'Secure Web Infrastructure & DevOps Services | NetBots Pakistan',
-    metaDescription: 'Docker containers, Nginx deployments, Linux security hardening, and CI/CD pipelines for maximum uptime. NetBots builds infrastructure that scales and survives anything.',
-    desc: 'Seamless SSL deployment, isolated container environments, robust database management for maximum uptime.',
-    stack: ['Docker', 'Nginx', 'Linux Security', 'CI/CD'],
+    metaTitle: 'Secure Cloud Infrastructure & DevOps Services | NetBots Pakistan',
+    metaDescription: 'Docker containerization, Nginx reverse proxies, Linux security hardening, and zero-downtime CI/CD pipelines. NetBots engineers resilient cloud infrastructure.',
+    desc: 'Automated SSL deployment, isolated container environments, and robust database management for maximum enterprise uptime.',
+    stack: ['Docker', 'Nginx', 'Linux Hardening', 'CI/CD Pipelines', 'Cloudflare'],
     approach:
-      'Infrastructure as code, containerized deployments, and hardened security protocols. We build systems that scale seamlessly and survive anything.',
+      'Infrastructure as code, containerized microservices, and hardened security protocols. We build resilient systems engineered to scale seamlessly under heavy traffic.',
     impact:
-      'Maximum uptime, hardened data security, and seamless scaling during traffic spikes, without manual intervention.',
+      'Maximum uptime, hardened enterprise data security, and seamless auto-scaling during traffic spikes.',
+  },
+  'ui-ux': {
+    title: 'UI/UX Design & Product Strategy',
+    metaTitle: 'UI/UX Design & User Experience Engineering | NetBots Pakistan',
+    metaDescription: 'Human-centric UI/UX design, interactive prototypes, and design systems built to maximize conversion and user retention. Book a design consultation with NetBots.',
+    desc: 'User-centered interface design, interactive design systems, and friction-free user journeys engineered to maximize conversion.',
+    stack: ['Figma', 'Design Systems', 'Interactive Prototyping', 'User Research', 'A/B Testing'],
+    approach:
+      'We combine behavioral psychology with modern aesthetic principles to craft digital interfaces that feel fluid, responsive, and intuitive.',
+    impact:
+      'Higher user engagement, reduced bounce rates, and intuitive workflows that drive customer retention and satisfaction.',
   },
 };
 

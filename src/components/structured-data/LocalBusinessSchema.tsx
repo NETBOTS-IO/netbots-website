@@ -5,7 +5,7 @@ export function LocalBusinessSchema() {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: 'Net Bots (SMC-Private) Limited',
-    image: 'https://netbots.io/netbots-logo-original.png',
+    image: 'https://netbots.io/images/netbots-logo-original.avif',
     '@id': 'https://netbots.io',
     url: 'https://netbots.io',
     telephone: '+923433757373',

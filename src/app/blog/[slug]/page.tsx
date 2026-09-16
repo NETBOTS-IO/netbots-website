@@ -150,7 +150,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       url: 'https://netbots.io',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://netbots.io/images/logo.png',
+        url: 'https://netbots.io/images/netbots-logo-original.avif',
       },
     },
     mainEntityOfPage: {

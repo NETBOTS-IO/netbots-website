@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { getStoredUTM } from '@/components/tracking/UTMTracker';
 
 export function LeadCaptureModal({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) {
   const [step, setStep] = useState(1);
@@ -58,6 +59,7 @@ export function LeadCaptureModal({ isOpen, onClose }: { isOpen: boolean, onClose
           budget: formData.budget,
           timeline: formData.timeline,
           context: formData.context,
+          utmData: getStoredUTM(),
         }),
       });
 
